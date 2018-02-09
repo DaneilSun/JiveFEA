@@ -10,6 +10,7 @@
 #include "HookeMaterial.h"
 #include "LinHardPlast.h"
 #include "Drucker.h"
+#include "DamageExpMetal.h"
 #include "utilities.h"
 
 using namespace jem;
@@ -238,9 +239,13 @@ Ref<Material>         newMaterial
   {
     mat = newInstance<Drucker> ( dim, globdat );
   }
+  else if ( type == "DamageExpMetal" )
+  {
+    mat = newInstance<DamageExpMetal> ( dim, globdat );
+  }
   else
   {
-    matProps.propertyError ( name, "invalid material type: " + type + ". Options are: 'Hooke' or 'LinHard'." );
+    matProps.propertyError ( name, "invalid material type: " + type + ". Options are: 'Hooke' or 'LinHard' or 'Drucker' or 'DamageExpMetal'." );
   }
 
   return mat;
